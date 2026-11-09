@@ -1,280 +1,71 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-PY">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RQR Ingeniería — Eléctrica, refrigeración y automatización de generadores</title>
-<meta name="description" content="Mantenimiento, reparación, instalación y automatización de generadores. Electricidad industrial y refrigeración de cualquier capacidad. Asunción, Paraguay.">
-<style>
-  :root{
-    --bg:#F2F5F7; --panel:#E6EBEE; --plate:#DBE2E7; --line:#C2CCD2;
-    --ink:#0F1922; --muted:#54636F; --navy:#0F2A43; --navy-2:#173A5C; --accent:#A80F26;
-    --white:#FFFFFF;
-    --font-display:"Arial Narrow","Helvetica Neue Condensed",Arial,sans-serif;
-    --font-body:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-    --font-mono:ui-monospace,"Cascadia Code","SFMono-Regular","Courier New",monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
-    -webkit-font-smoothing:antialiased; line-height:1.55;
-  }
-  img,svg{max-width:100%;}
-  a{color:inherit;}
-  .wrap{ max-width:1080px; margin:0 auto; padding:0 20px; }
-  .eyebrow{
-    font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--accent); margin:0 0 10px;
-  }
-  h1,h2,h3{
-    font-family:var(--font-display); font-weight:800; font-stretch:condensed;
-    letter-spacing:.01em; margin:0; text-wrap:balance; color:var(--navy);
-  }
-  .btn{
-    display:inline-flex; align-items:center; gap:10px;
-    background:var(--navy); color:var(--white); text-decoration:none;
-    font-family:var(--font-display); font-weight:800; font-stretch:condensed;
-    letter-spacing:.03em; text-transform:uppercase; font-size:15px;
-    padding:15px 26px; border:none; cursor:pointer;
-  }
-  .btn:hover{ background:var(--navy-2); }
-  .btn-ghost{
-    background:transparent; color:var(--navy); border:1.5px solid var(--navy);
-  }
-  .btn-wa{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:52px; height:52px; border-radius:50%; background:#25D366;
-    text-decoration:none; flex:0 0 auto; box-shadow:0 2px 6px rgba(15,42,67,.18);
-  }
-  .btn-wa svg{ width:26px; height:26px; }
-  .btn-wa:hover{ background:#1FB958; }
-  .btn-wa.lg{ width:64px; height:64px; }
-  .btn-wa.lg svg{ width:32px; height:32px; }
-
-  /* ---- header ---- */
-  header.site{
-    position:sticky; top:0; z-index:20; background:var(--bg);
-    border-bottom:1px solid var(--line);
-  }
-  header.site .wrap{
-    display:flex; align-items:center; justify-content:space-between; padding:14px 20px;
-  }
-  .brand{ display:flex; align-items:center; gap:10px; }
-  .brand svg{ height:46px; width:auto; display:block; }
-
-  /* ---- hero ---- */
-  .hero{ padding:56px 0 40px; border-bottom:1px solid var(--line); }
-  .hero h1{ font-size:clamp(28px,4.6vw,44px); line-height:1.15; max-width:680px; }
-  .hero p.lead{
-    max-width:52ch; color:var(--muted); font-size:16.5px; margin:18px 0 26px;
-  }
-  .hero .actions{ display:flex; flex-wrap:wrap; gap:12px; }
-
-  /* ---- section shell ---- */
-  section{ padding:52px 0; border-bottom:1px solid var(--line); }
-  .section-head{ max-width:56ch; margin:0 0 30px; }
-  .section-head h2{ font-size:clamp(22px,3.4vw,30px); }
-  .section-head p{ color:var(--muted); margin:10px 0 0; font-size:15px; }
-
-  /* ---- services grid ---- */
-  .services{
-    display:grid; grid-template-columns:1fr; gap:14px;
-  }
-  @media (min-width:640px){ .services{ grid-template-columns:repeat(2,1fr); } }
-  @media (min-width:980px){ .services{ grid-template-columns:repeat(3,1fr); } }
-  .svc{
-    background:var(--panel); border:1px solid var(--line); padding:22px 20px;
-  }
-  .svc .tag{
-    font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; color:var(--accent);
-    text-transform:uppercase; margin:0 0 10px;
-  }
-  .svc h3{ font-size:17px; margin:0 0 8px; }
-  .svc p{ font-size:13.8px; color:var(--muted); margin:0; }
-
-  /* ---- capability strip ---- */
-  .capability{ background:var(--navy); color:var(--bg); border-bottom:none; }
-  .capability .wrap{ display:grid; gap:26px; }
-  @media (min-width:820px){ .capability .wrap{ grid-template-columns:1fr 1fr; align-items:center; } }
-  .capability .eyebrow{ color:#7FA6C9; }
-  .capability h2{ color:var(--bg); font-size:clamp(22px,3.2vw,28px); }
-  .capability p{ color:#B9C9D6; font-size:15px; margin:14px 0 0; max-width:48ch; }
-  .spec-list{
-    list-style:none; margin:0; padding:0; display:grid; gap:10px;
-    font-family:var(--font-mono); font-size:12.5px; color:#CBD9E3;
-  }
-  .spec-list li{ display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid #24405C; padding-bottom:8px; }
-  .spec-list b{ color:var(--bg); font-weight:600; text-align:right; }
-  .spec-note{
-    grid-column:1/-1; font-family:var(--font-mono); font-size:11px; color:#7488A0;
-    margin:4px 0 0; letter-spacing:.02em;
-  }
-
-  /* ---- contact ---- */
-  .contact .wrap{ display:grid; gap:30px; }
-  @media (min-width:820px){ .contact .wrap{ grid-template-columns:1.1fr .9fr; } }
-  .contact-card{
-    background:var(--panel); border:1px solid var(--line); padding:26px;
-  }
-  .contact-card .row{ display:flex; align-items:center; gap:12px; margin:0 0 16px; font-size:15px; }
-  .contact-card .row:last-child{ margin-bottom:0; }
-  .contact-card .row b{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; display:block; }
-
-  /* ---- signup ---- */
-  .signup{ background:var(--plate); }
-  .signup form{ display:flex; flex-wrap:wrap; gap:10px; max-width:460px; }
-  .signup input[type=email]{
-    flex:1 1 220px; padding:13px 14px; border:1.5px solid var(--line); background:var(--white);
-    font-family:var(--font-body); font-size:14.5px; color:var(--ink);
-  }
-  .signup input[type=email]:focus{ outline:2px solid var(--navy); outline-offset:1px; }
-  .signup .fine{ font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-top:10px; }
-
-  footer.site{ padding:30px 0; }
-  footer.site .wrap{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; font-size:12.5px; color:var(--muted); }
-</style>
+<title>RQR | Servicios integrales, generadores y automatización</title>
+<meta name="description" content="Somos una empresa que brinda servicios integrales de electricidad, refrigeración, generadores y automatización para empresas, industrias y constructoras. Asunción, Paraguay.">
+<link rel="icon" href="logos/RQR_icono-R_color.svg" type="image/svg+xml">
+<link rel="icon" href="logos/RQR_icono-R_color.png" type="image/png">
+<link rel="apple-touch-icon" href="logos/RQR_icono-R_color.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="menu.js" defer></script>
 </head>
 <body>
 
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-  <symbol id="ico-wa" viewBox="0 0 24 24">
-    <path fill="#fff" d="M12 2.6c-5.2 0-9.4 4.2-9.4 9.4 0 1.7.45 3.3 1.24 4.68L2.6 21.4l4.86-1.27a9.35 9.35 0 0 0 4.54 1.17h.01c5.2 0 9.4-4.2 9.4-9.4S17.2 2.6 12 2.6z"/>
-    <path fill="#25D366" d="M12 4.1c-4.36 0-7.9 3.54-7.9 7.9 0 1.53.44 2.95 1.2 4.16l.18.29-.79 2.9 2.98-.78.28.17a7.85 7.85 0 0 0 4.05 1.11h.01c4.36 0 7.9-3.54 7.9-7.9S16.36 4.1 12 4.1z"/>
-    <path fill="#fff" d="M9.4 7.6c-.19-.42-.39-.43-.57-.44l-.49-.01c-.17 0-.45.06-.68.32-.24.26-.9.88-.9 2.14 0 1.26.92 2.48 1.05 2.65.13.17 1.79 2.86 4.42 3.9 2.19.86 2.63.69 3.11.65.48-.04 1.54-.63 1.76-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.68.85-.83 1.02-.15.17-.31.2-.57.07-.26-.13-1.1-.4-2.1-1.28-.78-.68-1.3-1.53-1.46-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.31.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.06-.13-.57-1.42-.8-1.94z"/>
-  </symbol>
-</svg>
-
-<header class="site">
-  <div class="wrap">
-    <div class="brand">
-      <svg viewBox="0 0 320 110" role="img" aria-label="RQR Ingeniería">
-        <text x="0" y="66" font-family="Arial Narrow, Helvetica Neue Condensed, Arial, sans-serif" font-weight="800" font-stretch="condensed" font-size="52" fill="#0F2A43" textLength="94" lengthAdjust="spacingAndGlyphs">RQR</text>
-        <line x1="112" y1="18" x2="112" y2="80" stroke="#0F2A43" stroke-width="1.6"/>
-        <text x="126" y="46" font-family="ui-monospace, monospace" font-weight="600" letter-spacing=".2em" font-size="14" fill="#0F2A43">INGENIERÍA</text>
-        <text x="126" y="66" font-family="ui-monospace, monospace" font-size="9" letter-spacing=".03em" fill="#54636F">ELÉCTRICA · REFRIGERACIÓN</text>
-        <text x="126" y="78" font-family="ui-monospace, monospace" font-size="9" letter-spacing=".03em" fill="#54636F">AUTOMATIZACIÓN</text>
-      </svg>
-    </div>
-    <a class="btn-wa" href="https://wa.me/595991807312?text=Hola%2C%20quisiera%20consultar%20por%20un%20servicio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><use href="#ico-wa"/></svg></a>
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="logo" href="index.html"><img src="logos/RQR_logo_color.svg" alt="RQR Servicios integrales, ir a Inicio" width="451" height="104"></a>
+    <button class="abrir-menu" type="button" aria-label="Menú" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="menu" id="menu" aria-label="Páginas">
+      <a href="index.html" aria-current="page">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="contacto.html">Contacto</a>
+      <a class="boton" href="https://wa.me/595991807312?text=Hola%2C%20quisiera%20consultar%20por%20un%20servicio." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </nav>
   </div>
 </header>
 
 <main>
-
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">RQR Ingeniería · Asunción, Paraguay</p>
-      <h1>Servicio técnico especializado en generadores, electricidad industrial y refrigeración.</h1>
-      <p class="lead">
-        Mantenimiento, diagnóstico, reparación, instalación y automatización de generadores.
-        Electricidad industrial y refrigeración de cualquier capacidad.
-      </p>
-      <div class="actions">
-        <a class="btn-wa lg" href="https://wa.me/595991807312?text=Hola%2C%20quisiera%20consultar%20por%20un%20servicio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><use href="#ico-wa"/></svg></a>
-        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+  <section class="portada">
+    <div class="contenedor">
+      <span class="detalle" aria-hidden="true"></span>
+      <h1>Servicios integrales para empresas, industrias y constructoras.</h1>
+      <p>Somos RQR, una empresa de Asunción que presta servicios de electricidad, refrigeración, automatización y mantenimiento. Realizamos instalaciones, reparaciones y mantenimientos, según lo que necesite cada cliente.</p>
+      <div class="acciones">
+        <a class="boton" href="servicios.html">Ver servicios</a>
+        <a class="boton boton-secundario" href="https://wa.me/595991807312?text=Hola%2C%20quisiera%20consultar%20por%20un%20servicio." target="_blank" rel="noopener">Consultar por WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <section id="servicios">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Qué hacemos</h2>
-        <p>Servicios eléctricos y de refrigeración, desde reparaciones puntuales hasta la automatización completa de una sala de máquinas.</p>
-      </div>
-      <div class="services">
-        <article class="svc">
-          <p class="tag">Generadores</p>
-          <h3>Mantenimiento</h3>
-          <p>Mantenimiento preventivo y correctivo de generadores, de cualquier marca y potencia.</p>
-        </article>
-        <article class="svc">
-          <p class="tag">Generadores</p>
-          <h3>Diagnóstico y reparación</h3>
-          <p>Diagnóstico técnico y reparación de fallas eléctricas y mecánicas, incluyendo equipos fuera de servicio.</p>
-        </article>
-        <article class="svc">
-          <p class="tag">Generadores</p>
-          <h3>Instalación</h3>
-          <p>Instalación completa de generadores nuevos, con toda la obra eléctrica asociada.</p>
-        </article>
-        <article class="svc">
-          <p class="tag">Generadores</p>
-          <h3>Automatización</h3>
-          <p>Automatización de arranque, protecciones y monitoreo remoto con panel HMI, para generadores de distintas marcas.</p>
-        </article>
-        <article class="svc">
-          <p class="tag">Instalaciones</p>
-          <h3>Electricidad general</h3>
-          <p>Tableros, cableado, protecciones y puesta a tierra para instalaciones industriales y comerciales.</p>
-        </article>
-        <article class="svc">
-          <p class="tag">Refrigeración</p>
-          <h3>Aire acondicionado</h3>
-          <p>Instalación, mantenimiento y reparación de equipos de refrigeración de cualquier capacidad.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="capability">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Automatización de generadores</p>
-        <h2>Automatización de arranque, protecciones y monitoreo remoto.</h2>
-        <p>Automatizamos generadores de distintas marcas y capacidades: arranque y parada automática, protecciones eléctricas completas y monitoreo remoto desde un panel HMI.</p>
-      </div>
-      <ul class="spec-list">
-        <li><span>Potencia</span><b>Cualquier capacidad</b></li>
-        <li><span>Controladores</span><b>Múltiples marcas y modelos</b></li>
-        <li><span>Protecciones</span><b>Protecciones eléctricas completas</b></li>
-        <li><span>Monitoreo remoto</span><b>Panel HMI vía Modbus RS-485</b></li>
+  <section class="seccion">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Áreas de trabajo</h2>
+      <ul class="areas">
+        <li><a href="servicios.html#electricidad"><h3>Electricidad</h3><p>Instalaciones, tableros y asistencia eléctrica en obra.</p></a></li>
+        <li><a href="servicios.html#refrigeracion"><h3>Refrigeración y aire acondicionado</h3><p>Instalación, mantenimiento y reparación de equipos split y por ductos.</p></a></li>
+        <li><a href="servicios.html#generadores"><h3>Generadores</h3><p>Mantenimiento, reparación, automatización y puesta en paralelo.</p></a></li>
+        <li><a href="servicios.html#automatizacion"><h3>Automatización e instalaciones industriales</h3><p>PLC, variadores, motores e instalación eléctrica de plantas nuevas o ampliaciones.</p></a></li>
+        <li><a href="servicios.html#mantenimiento"><h3>Mantenimiento para empresas</h3><p>Luces, bombas, motores, térmicas y contactores.</p></a></li>
       </ul>
     </div>
   </section>
-
-  <section class="contact" id="contacto">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:0;">
-        <h2>Hablemos de tu instalación</h2>
-        <p>Escribinos y te respondemos a la brevedad.</p>
-      </div>
-      <div class="contact-card">
-        <div class="row">
-          <span><b>WhatsApp / Teléfono</b>0991 807 312</span>
-        </div>
-        <div class="row">
-          <span><b>Correo</b>hugo.riquelme.2000@gmail.com</span>
-        </div>
-        <div class="row">
-          <span><b>Zona</b>Asunción y Área Metropolitana, Paraguay</span>
-        </div>
-        <a class="btn-wa" style="margin-top:8px;" href="https://wa.me/595991807312?text=Hola%2C%20quisiera%20consultar%20por%20un%20servicio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><use href="#ico-wa"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="signup">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Novedades y disponibilidad</h2>
-        <p>Dejanos tu correo para recibir novedades y disponibilidad de turnos.</p>
-      </div>
-      <form onsubmit="event.preventDefault(); alert('Formulario en configuración — todavía no conectado.');">
-        <input type="email" name="email" placeholder="tu@correo.com" required aria-label="Correo electrónico">
-        <button class="btn" type="submit">Suscribirme</button>
-      </form>
-      <p class="fine">* Este formulario se conecta a la lista de correo en el próximo paso.</p>
-    </div>
-  </section>
-
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <span>© 2026 RQR Ingeniería.</span>
-    <span>Asunción, Paraguay</span>
+<footer class="pie">
+  <div class="contenedor">
+    <img src="logos/RQR_logo_fondo-oscuro.svg" alt="RQR Servicios integrales" width="451" height="104">
+    <ul>
+      <li><a href="tel:+595991807312">0991 807 312</a></li>
+      <li>Correo: <span class="pendiente">[por definir]</span></li>
+      <li>Asunción, Paraguay</li>
+    </ul>
   </div>
 </footer>
 
